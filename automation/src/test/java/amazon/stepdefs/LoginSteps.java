@@ -5,6 +5,7 @@ import static amazon.stepdefs.Hooks.driver;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.amazon.pageObject.LoginPage;
 
 public class LoginSteps {
@@ -27,6 +28,11 @@ public class LoginSteps {
   @And("I type the password {string}")
   public void ITypeThePassword(String password){
     loginPage.typeLoginPassword(password);
+  }
+
+  @Then("I should see error {string} displayed")
+  public void ISeeTheError(String error){
+
   }
 
 }

@@ -29,6 +29,9 @@ public class LoginPage extends BasePage{
   @FindBy(how = How.ID, using = "signInSubmit")
   private WebElement signInButton;
 
+  @FindBy(how= How.ID, using= "")
+  private WebElement errorMessage;
+
 
   public void login( String password){
 
@@ -54,6 +57,11 @@ public class LoginPage extends BasePage{
 
   public void clickSignInButton(){
     signInButton.click();
+  }
+
+  public String getErrorMessage(){
+    return errorText.getText();
+
   }
 
 
