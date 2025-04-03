@@ -20,8 +20,8 @@ public class FilterSteps {
     public void iSeeValuesInsideTheRange(int min, int max){
         List<Integer> prices = filterPage.getPrices();
         for(Integer price: prices){
-            assertTrue(price>=min,"Price is less than minimum");
-            assertTrue(price<=max,"Price is more than maximum");
+            assertTrue(price>=min,"Price is less than minimum "+price+" "+min);
+            assertTrue(price<=max,"Price is more than maximum "+price+" "+max);
         }
     }
 

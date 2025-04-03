@@ -1,6 +1,7 @@
 package org.amazon.pageObject;
 
 import io.cucumber.java.sl.In;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,8 +33,10 @@ public class FilterPage extends BasePage{
     @FindBy(how = How.XPATH, using = "//span[contains(@class,'sellingPrice')]")
     List<WebElement> pricesList;
 
-    @FindBy(how = How.XPATH, using = "//div[contains(@class,'loadingBar')]")
-    WebElement loadingBar;
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'loading')]")
+    WebElement buyNowButton;
+
+
 
 
 
@@ -50,12 +53,13 @@ public class FilterPage extends BasePage{
         }
         maximumPriceInput.sendKeys(maximumPrice);
         searchButton.click();
-        waitForElement(loadingBar);
-        waitForElementNotPresent(loadingBar);
+        waitForURL(maximumPrice);
+        waitForElementToBeClickable(buyNowButton);
 
     }
 
     public List<Integer> getPrices(){
+        waitForElementToBeClickable(pricesList);
         List<Integer> prices = new ArrayList<>();
         for(WebElement price: pricesList){
             prices.add(Integer.parseInt(price.getText().replace("$","").replace(".00","").trim()));

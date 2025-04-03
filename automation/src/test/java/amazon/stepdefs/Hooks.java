@@ -4,6 +4,7 @@ package amazon.stepdefs;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import java.util.concurrent.TimeUnit;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.WebDriver;
@@ -22,10 +23,11 @@ public class Hooks {
       String driverVersion;
       String appURL;
       try {
-          Object o = new JSONParser().parse(new FileReader("D:\\Documents\\test\\testamazon\\automation\\capabilites.json"));
+          Object o = new JSONParser().parse(new FileReader("capabilites.json"));
           JSONObject json = (JSONObject) o;
           driverVersion = (String)json.get("browser");
           appURL = (String) json.get("appURL");
+
 
       } catch (Exception e) {
           throw new RuntimeException(e);

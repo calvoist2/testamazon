@@ -2,6 +2,7 @@ package org.amazon.pageObject;
 
 import java.time.Duration;
 
+import java.util.List;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,15 +20,22 @@ public class BasePage {
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     wait.until(ExpectedConditions.visibilityOf(element));
   }
-  public void waitForElementNotPresent(WebElement element){
+  public void waitForElementToBeClickable(WebElement element){
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     wait.until(ExpectedConditions.invisibilityOf(element));
   }
 
-
-
-  public void setValueUsingJavaScript(String value, WebElement element){
-    JavascriptExecutor jse = (JavascriptExecutor)driver;
-    jse.executeScript("arguments[0].setAttribute('value', '" + value +"')", element);
+  public void waitForURL(String max){
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.urlContains("20"+max));
   }
+
+  public void waitForElementToBeClickable(List<WebElement> elements){
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+  }
+
+
+
+
 }
